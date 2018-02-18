@@ -1,0 +1,22 @@
+src/**/*.spec.ts
+
+#tests
+test
+coverage
+
+#build tools
+.travis.yml
+.jenkins.yml
+.codeclimate.yml
+.jenkinsfile
+
+#linters
+.jscsrc
+.jshintrc
+.eslintrc*
+
+
+#editor settings
+.idea
+.editorconfig
+.vscode
