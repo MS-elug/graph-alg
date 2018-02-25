@@ -1,0 +1,14 @@
+{
+  "indent_size": 4,
+  "indent_char": " ",
+  "eol":"\n",
+  "end_with_newline": true,
+  "space_after_anon_function":false,
+  "space_in_paren":false,
+  "space_in_empty_paren":false,
+  "space_before_conditional":false,
+  "wrap_line_length":240,
+  "css": {
+    "indent_size": 2
+  }
+}
