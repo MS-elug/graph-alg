@@ -1,16 +1,4 @@
-/**
- * Graph representation
- * @export
- * @interface IGraph
- */
-export interface IGraph {
-    /**
-     * List of oriented connection between graph nodes.
-     */
-    [node: string]: {
-        [node: string]: number;
-    };
-}
+import {IOrientedGraph} from "./Graph";
 
 /**
  *
@@ -32,7 +20,7 @@ interface IResult {
  */
 export default class Dijkstra {
 
-    constructor(private readonly graph: IGraph) {
+    constructor(private readonly graph: IOrientedGraph) {
         if (!graph) {
             throw new Error("Class cannot instantiate without graph data");
         }

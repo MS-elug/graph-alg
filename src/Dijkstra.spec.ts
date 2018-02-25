@@ -1,6 +1,7 @@
 import { expect } from "chai";
 import Dijkstra from "./Dijkstra";
-import { convertMapToGraph } from "./MapUtil";
+import {IOrientedGraph} from "./Graph";
+import { IMap, MapUtils } from "./MapUtils";
 
 describe("Dijkstra", () => {
     describe("Graph distance", () => {
@@ -18,7 +19,7 @@ describe("Dijkstra", () => {
              *  +----2---->2+--7-+---->4+-----1----+
              *            +-+         +-+
              */
-            const graph = {
+            const graph: IOrientedGraph = {
                 "0": { "1": 5, "2": 2 },
                 "1": { "3": 4, "4": 2 },
                 "2": { "1": 8, "4": 7 },
@@ -40,7 +41,7 @@ describe("Dijkstra", () => {
         /**
          * S is the starting point, E is the Exit and X are walls
          */
-        const map = [
+        const map: IMap = [
             ["S", " ", " ", " ", " ", " "],
             ["X", "X", "X", "X", " ", " "],
             [" ", " ", " ", " ", " ", " "],
@@ -49,7 +50,7 @@ describe("Dijkstra", () => {
         ];
 
         it("should compute smallest path for a map with orthogonal moves", () => {
-            const mapToGraphData = convertMapToGraph(map, false);
+            const mapToGraphData = MapUtils.convertMapToGraph(map, false);
 
             const dijkstra = new Dijkstra(mapToGraphData.graph);
             const result = dijkstra.resolve(mapToGraphData.startingPoint, mapToGraphData.exitPoint);
@@ -59,7 +60,7 @@ describe("Dijkstra", () => {
         });
 
         it("should compute smallest path for a map with orthogonal and diagonal moves", () => {
-            const mapToGraphData = convertMapToGraph(map, true);
+            const mapToGraphData = MapUtils.convertMapToGraph(map, true);
 
             const dijkstra = new Dijkstra(mapToGraphData.graph);
             const result = dijkstra.resolve(mapToGraphData.startingPoint, mapToGraphData.exitPoint);
