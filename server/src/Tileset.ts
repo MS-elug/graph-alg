@@ -8,21 +8,33 @@ export class Tileset {
     private height: number;
     private readonly image: HTMLImageElement;
     constructor() {
-        // Add the image to our existing div.
         this.image = new Image();
-
-        this.image.onload = () => {
-            if (!this.image.complete) {
-                throw new Error("Erreur de chargement du tileset nommé \"" + tileSet + "\".");
-            }
-            this.width = this.image.width / Tileset.TILE_SIZE;
-            this.height = this.image.height / Tileset.TILE_SIZE;
-        };
-        this.image.src = tileSet;
-
-        document.body.appendChild(this.image);
     }
 
+    public loadImage(): Promise<void> {
+        return new Promise<void>((resolve: () => void, reject: (err: Error) => void) => {
+            this.image.addEventListener("load", () => {
+                if (!this.image.complete) {
+                    reject(new Error("Can't load tileset: \"" + tileSet + "\"."));
+                }
+                this.width = this.image.width / Tileset.TILE_SIZE;
+                this.height = this.image.height / Tileset.TILE_SIZE;
+                resolve();
+            }, false);
+
+            this.image.src = tileSet;
+        });
+    }
+
+    /**
+     *
+     *
+     * @param {CanvasRenderingContext2D} context
+     * @param {number} x
+     * @param {number} y
+     * @param {number} tileIndex
+     * @memberof Tileset
+     */
     public drawTile(context: CanvasRenderingContext2D, x: number, y: number, tileIndex: number) {
         let xIndexSource = tileIndex % this.width;
         if (xIndexSource === 0) { xIndexSource = this.width; }
