@@ -1,6 +1,6 @@
 import { expect } from "chai";
 import Dijkstra from "./Dijkstra";
-import {IOrientedGraph} from "./Graph";
+import {IDirectedGraph} from "./Graph";
 import { IMap, MapUtils } from "./MapUtils";
 
 describe("Dijkstra", () => {
@@ -19,7 +19,7 @@ describe("Dijkstra", () => {
              *  +----2---->2+--7-+---->4+-----1----+
              *            +-+         +-+
              */
-            const graph: IOrientedGraph = {
+            const graph: IDirectedGraph = {
                 "0": { "1": 5, "2": 2 },
                 "1": { "3": 4, "4": 2 },
                 "2": { "1": 8, "4": 7 },

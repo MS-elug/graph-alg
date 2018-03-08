@@ -1,14 +1,26 @@
 /**
- * Orientated graph representation
+ * Directed graph representation
+ * A directed graph (or digraph) is a graph that is a set of vertices connected by edges,
+ * where the edges have a direction associated with them.
+ *
  * @export
- * @interface IOrientedGraph
+ * @interface IDirectedGraph
  */
-export interface IOrientedGraph {
+export interface IDirectedGraph {
     /**
-     * List of oriented connection between graph nodes.
-     * Map oriented node connections with a cost
+     * List of directed link between graph nodes.
+     * Map oriented edge
      */
     [fromNode: string]: {
-        [toNode: string]: number;
+        [toNode: string]: IEdge | number;
     };
+}
+/**
+ * Edge is a relation between two nodes of a graph
+ *
+ * @export
+ * @interface IEdge
+ */
+export interface IEdge {
+    cost: number;
 }

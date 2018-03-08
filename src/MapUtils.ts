@@ -1,4 +1,4 @@
-import { IOrientedGraph } from "./Graph";
+import { IDirectedGraph } from "./Graph";
 
 /**
  * Define the type of Cell
@@ -47,7 +47,7 @@ export class MapUtils {
         const height = map.length;
         const width = map[0].length;
 
-        const graph: IOrientedGraph = {};
+        const graph: IDirectedGraph = {};
         let startingPoint: string = null;
         let exitPoint: string = null;
 

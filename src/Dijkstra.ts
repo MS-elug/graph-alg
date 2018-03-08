@@ -1,4 +1,4 @@
-import {IOrientedGraph} from "./Graph";
+import {IDirectedGraph, IEdge} from "./Graph";
 
 /**
  *
@@ -20,7 +20,7 @@ interface IResult {
  */
 export default class Dijkstra {
 
-    constructor(private readonly graph: IOrientedGraph) {
+    constructor(private readonly graph: IDirectedGraph) {
         if (!graph) {
             throw new Error("Class cannot instantiate without graph data");
         }
@@ -60,11 +60,11 @@ export default class Dijkstra {
         const P = [];
 
         // Create a structure to store computed cost from the source point to other nodes
-        const distance: { [node: string]: number } = {};
+        const totalCostToNode: { [node: string]: number } = {};
         // Create a structure to store every node predecessor
         const predecessor: { [node: string]: string } = {};
         Q.forEach((node) => {
-            distance[node] = node === sourceNode ? 0 : Number.POSITIVE_INFINITY;
+            totalCostToNode[node] = node === sourceNode ? 0 : Number.POSITIVE_INFINITY;
             predecessor[node] = null;
         });
 
@@ -74,26 +74,28 @@ export default class Dijkstra {
         let currentNode: string = sourceNode;
         while (currentNode) {
             // Get current distance from sourceNode
-            const distanceFromSource = distance[currentNode];
+            const costFromSource = totalCostToNode[currentNode];
             // Get current node children
-            const childrenDistanceFromCurrentNode = this.graph[currentNode];
+            const adjacentNodes = this.graph[currentNode];
             // For every child node, save only the minimal distance
-            for (const n in childrenDistanceFromCurrentNode) {
-                if (!childrenDistanceFromCurrentNode.hasOwnProperty(n)) {
+            for (const adjacentNode in adjacentNodes) {
+                if (!adjacentNodes.hasOwnProperty(adjacentNode)) {
                     continue;
                 }
-                const childDistanceFromSource = distanceFromSource + childrenDistanceFromCurrentNode[n];
-                if (distance[n] > childDistanceFromSource) {
-                    distance[n] = childDistanceFromSource;
-                    predecessor[n] = currentNode;
+                const edge = adjacentNodes[adjacentNode];
+                const cost = typeof edge === "number" ? edge : (edge as IEdge).cost;
+                const adjacentNodeCostFromSource = costFromSource + cost;
+                if (totalCostToNode[adjacentNode] > adjacentNodeCostFromSource) {
+                    totalCostToNode[adjacentNode] = adjacentNodeCostFromSource;
+                    predecessor[adjacentNode] = currentNode;
                 }
             }
             // Remove node from Q set and put it to P
             P.push(Q.splice(Q.indexOf(currentNode), 1)[0]);
-            currentNode = this.lowestDistanceNode(Q, distance);
+            currentNode = this.lowestDistanceNode(Q, totalCostToNode);
         }
         // Output the distance to reach the target nod from the source node
-        result.distance = distance[targetNode];
+        result.distance = totalCostToNode[targetNode];
 
         // ----------------------------
         // #3 Compute shortest path between source and target nodes
