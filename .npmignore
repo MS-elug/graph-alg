@@ -1,8 +1,7 @@
-src
-lib
-test
-coverage
-
+./src
+./lib
+./test
+./coverage
 node_modules
 
 #build tools
@@ -21,3 +20,8 @@ node_modules
 .idea
 .editorconfig
 .vscode
+
+.nyc_output
+.nycrc
+tslint.json
+tsconfig.jcon
