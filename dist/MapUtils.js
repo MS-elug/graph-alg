@@ -1,18 +1,6 @@
-import { IDirectedGraph } from "./Graph";
-
-/**
- * Define the type of Cell
- * - S means Starting point
- * - E means Exit point
- * - X means there is a wall
- * - empty means navigable cell
- */
-export type IMapCell = " " | "S" | "E" | "X";
-export interface IMapRow extends Array<IMapCell> { }
-
-export interface IMap extends Array<IMapRow> { }
-
-export class MapUtils {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+class MapUtils {
     /**
      * Create a connected graph from the map
      * @param map
@@ -43,14 +31,12 @@ export class MapUtils {
      * 5 | E |   |   |   |   |
      * --------------------------
      */
-    public static convertMapToGraph(map: IMap, allowDiagonalMove: boolean) {
+    static convertMapToGraph(map, allowDiagonalMove) {
         const height = map.length;
         const width = map[0].length;
-
-        const graph: IDirectedGraph = {};
-        let startingPoint: string | null = null;
-        let exitPoint: string | null = null;
-
+        const graph = {};
+        let startingPoint = null;
+        let exitPoint = null;
         for (let y = 0; y < height; y++) {
             for (let x = 0; x < width; x++) {
                 const mapValue = map[y][x];
@@ -58,14 +44,13 @@ export class MapUtils {
                 // Test if the map value is either a starting or ending point
                 if (!startingPoint && mapValue === "S") {
                     startingPoint = fromNodeName;
-                } else if (!exitPoint && mapValue === "E") {
+                }
+                else if (!exitPoint && mapValue === "E") {
                     exitPoint = fromNodeName;
                 }
-
                 // If the map value is navigable, compute graph value
                 if (mapValue === " " || mapValue === "S" || mapValue === "E") {
                     graph[fromNodeName] = {};
-
                     // Generate a list of allowed moved
                     let nav = [{ x: x, y: y - 1 }, { x: x - 1, y: y }, { x: x + 1, y: y }, { x: x, y: y + 1 }];
                     // Add diagonal move if enabled
@@ -84,15 +69,15 @@ export class MapUtils {
                 }
             }
         }
-
         return {
             exitPoint: exitPoint,
             graph: graph,
             startingPoint: startingPoint,
         };
     }
-
-    private static generateNodeName(x: number, y: number) {
+    static generateNodeName(x, y) {
         return `${x}:${y}`;
     }
 }
+exports.MapUtils = MapUtils;
+//# sourceMappingURL=MapUtils.js.map

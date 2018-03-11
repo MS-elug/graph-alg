@@ -1,3 +1,5 @@
 module.exports = {
-    Dijkstra : require('./src/Dijkstra')
+    Dijkstra : require('./dist/Dijkstra'),
+    DFS : require('./dist/DFS'),
+    MapUtils : require('./dist/MapUtils')
 }

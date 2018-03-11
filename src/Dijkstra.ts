@@ -1,10 +1,10 @@
-import {IDirectedGraph, IEdge} from "./Graph";
+import { IDirectedGraph, IEdge } from "./Graph";
 
 /**
  *
  * @interface IResult
  */
-interface IResult {
+export interface IResult {
     distance: number;
     path: string[];
 }
@@ -46,7 +46,7 @@ export default class Dijkstra {
             throw new Error(`Graph do not contain targetNode=${targetNode}`);
         }
 
-        const result = {
+        const result: IResult = {
             distance: Number.POSITIVE_INFINITY,
             path: [],
         };
@@ -57,12 +57,12 @@ export default class Dijkstra {
         // Q = set all of nodes
         const Q = Object.keys(this.graph);
         // P = set of processed nodes
-        const P = [];
+        const P: string[] = [];
 
         // Create a structure to store computed cost from the source point to other nodes
         const totalCostToNode: { [node: string]: number } = {};
         // Create a structure to store every node predecessor
-        const predecessor: { [node: string]: string } = {};
+        const predecessor: { [node: string]: string | null } = {};
         Q.forEach((node) => {
             totalCostToNode[node] = node === sourceNode ? 0 : Number.POSITIVE_INFINITY;
             predecessor[node] = null;
@@ -71,7 +71,7 @@ export default class Dijkstra {
         // ----------------------------
         // #2
         // Init algo from source node
-        let currentNode: string = sourceNode;
+        let currentNode: string | null = sourceNode;
         while (currentNode) {
             // Get current distance from sourceNode
             const costFromSource = totalCostToNode[currentNode];
@@ -115,8 +115,11 @@ export default class Dijkstra {
      * Compute the lowest distance from the remaing nodes in Q set
      */
     private lowestDistanceNode = (Q: string[], distance: { [node: string]: number }) => {
-        return Q.reduce((lowestNode, node) => {
-            if (lowestNode === null || distance[node] < distance[lowestNode]) {
+        return Q.reduce((lowestNode: string | null, node) => {
+            if (lowestNode === null) {
+                lowestNode = node;
+            }
+            if (distance[node] < distance[lowestNode]) {
                 lowestNode = node;
             }
             return lowestNode;

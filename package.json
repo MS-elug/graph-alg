@@ -1,23 +1,32 @@
 {
-  "name": "graph-alg",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "build": "./node_modules/.bin/tsc",
-    "lint": "./node_modules/.bin/tslint src/**/*.ts",
-    "test": "./node_modules/.bin/mocha src/**/*.spec.ts -r ts-node/register",
-    "test:watch": ".\\node_modules\\.bin\\mocha src/**/*.spec.ts -r ts-node/register --watch --watch-extensions ts"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@types/chai": "^4.1.2",
-    "@types/mocha": "^2.2.48",
-    "chai": "^4.1.2",
-    "mocha": "^5.0.1",
-    "ts-node": "^5.0.0",
-    "tslint": "^5.9.1",
-    "typescript": "^2.7.2"
-  }
+    "name": "graph-alg",
+    "version": "1.0.0",
+    "description": "A Node.js module to manipulate Graph",
+    "main": "index.js",
+    "types": "index.d.ts",
+    "scripts": {
+        "prepare": "npm run build",
+        "build": "./node_modules/.bin/tsc",
+        "lint": "./node_modules/.bin/tslint -c tslint.json src/**/*.ts",
+        "test": "./node_modules/.bin/mocha src/**/*.spec.ts -r ts-node/register",
+        "test:watch": "./node_modules/.bin/mocha src/**/*.spec.ts -r ts-node/register --watch --watch-extensions ts"
+    },
+    "author": "Mathieu SEILER",
+    "license": "ISC",
+    "keywords": ["graph", "Dijkstra", "DFS", "BFS", "Breadth First Search"],
+    "bugs": {
+        "url": "https://github.com/MS-elug/graph-alg/issues"
+    },
+    "devDependencies": {
+        "@types/chai": "^4.1.2",
+        "@types/mocha": "^2.2.48",
+        "chai": "^4.1.2",
+        "mocha": "^5.0.1",
+        "ts-node": "^5.0.0",
+        "tslint": "^5.9.1",
+        "typescript": "^2.7.2"
+    },
+    "dependencies": {
+
+    }
 }
