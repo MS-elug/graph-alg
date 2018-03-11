@@ -30,7 +30,7 @@ npm run test
 ***Example:***
 
 ```typescript
-import { Dijkstra } from 'graph-alg';
+import {Dijkstra, IDirectedGraph} from "graph-alg";
 
 /**
  * Oriented Graph with ponderation
