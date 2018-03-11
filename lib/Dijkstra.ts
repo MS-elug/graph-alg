@@ -18,7 +18,7 @@ export interface IResult {
  * @ref https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
  *
  */
-export default class Dijkstra {
+export class Dijkstra {
 
     constructor(private readonly graph: IDirectedGraph) {
         if (!graph) {

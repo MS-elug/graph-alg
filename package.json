@@ -2,8 +2,8 @@
     "name": "graph-alg",
     "version": "1.0.0",
     "description": "A Node.js module to manipulate Graph",
-    "main": "index.js",
-    "types": "index.d.ts",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
     "scripts": {
         "coverage": "./node_modules/.bin/nyc npm run test",
         "prepare": "npm run build",

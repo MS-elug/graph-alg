@@ -14,7 +14,7 @@ import { IDirectedGraph } from "./Graph";
  * @ref https://en.wikipedia.org/wiki/Depth-first_search
  *
  */
-export default class DFS {
+export class DFS {
 
     constructor(private readonly graph: IDirectedGraph) {
         if (!graph) {
