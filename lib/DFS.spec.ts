@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import DFS from "./DFS";
+import { DFS } from "./DFS";
 import { IDirectedGraph } from "./Graph";
 import { IMap, MapUtils } from "./MapUtils";
 

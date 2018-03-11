@@ -8,7 +8,7 @@
         "**/*.spec.ts",
         "dist",
         "coverage",
-        "index.js"
+        "index.ts"
     ],
     "reporter": [
         "html"

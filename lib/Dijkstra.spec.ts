@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import Dijkstra from "./Dijkstra";
+import { Dijkstra } from "./Dijkstra";
 import {IDirectedGraph} from "./Graph";
 import { IMap, MapUtils } from "./MapUtils";
 
