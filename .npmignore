@@ -4,6 +4,8 @@ src
 test
 coverage
 
+node_modules
+
 #build tools
 .travis.yml
 .jenkins.yml
