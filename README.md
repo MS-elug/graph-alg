@@ -1,4 +1,6 @@
 # graph-alg
+[![Build Status](https://travis-ci.org/MS-elug/graph-alg.svg?branch=master)](https://travis-ci.org/MS-elug/graph-alg) [![Coverage Status](https://coveralls.io/repos/github/MS-elug/graph-alg/badge.svg?branch=master)](https://coveralls.io/github/MS-elug/graph-alg?branch=master)
+
 A Node.js module to manipulate Graph
 ## Installation
 ```sh
