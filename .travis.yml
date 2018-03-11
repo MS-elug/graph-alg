@@ -5,8 +5,7 @@ install:
  - npm install
 script:
  - npm run-script lint
- - npm run-script test
- - npm run coverage
+ - npm run-script coverage
 
 # Send coverage data to Coveralls
 after_script: "nyc report --reporter=text-lcov | ./node_modules/coveralls/bin/coveralls.js"
